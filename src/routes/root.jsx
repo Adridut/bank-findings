@@ -43,7 +43,7 @@ export default function Root() {
               <button type="submit">New</button>
             </Form>
           </div>
-          <nav>
+          <nav className="nav-bar">
             {contacts.length ? (
               <ul>
                 {contacts.map((contact) => (
