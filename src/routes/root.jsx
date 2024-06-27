@@ -5,7 +5,7 @@ import { getContacts, createContact } from "../contacts";
 
 export async function action() {
   const contact = await createContact();
-  return redirect(`/contacts/${contact.id}/edit`);
+  return redirect("/portal/contacts/" + contact.id + "/edit");
 }
 
 export async function loader() {
