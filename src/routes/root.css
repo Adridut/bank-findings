@@ -7,6 +7,9 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%;
+    width: 80%;
     text-align: center;
+    align-self: center;
+    margin: 5px;
+    margin-bottom: 10px;
 }

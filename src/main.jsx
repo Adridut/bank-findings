@@ -13,19 +13,21 @@ import Login from "./routes/login";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/portal",
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
       {
         path: "contacts/:contactId",
         element: <Contact />,
+        errorElement: <ErrorPage />,
       },
     ],
   },
   {
-    path: "login",
+    path: "/",
     element: <Login />,
+    errorElement: <ErrorPage />,
   },
 ]);
 

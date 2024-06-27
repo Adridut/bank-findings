@@ -1,6 +1,7 @@
 /* Styling for the login form */
 .login-container {
     width: 100%;
+    background-color: aliceblue;
 }
 
 .login-header {
@@ -15,9 +16,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 300px;
+    width: 350px;
     margin: 0 auto;
-    height: 20%;
+    border: 1px outset #999;
+    padding: 5px;
+    -webkit-box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.4);
+    background-color: white;
 }
 
 /* Styling for the form inputs */

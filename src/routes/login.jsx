@@ -40,7 +40,7 @@ const Login = () => {
                     onChange={handlePasswordChange}
                     placeholder='Password'
                 />
-                <Link className="link-button" to="/">Login</Link>
+                <Link className="link-button" to="/portal">Login</Link>
             </form>
         </div>
     );

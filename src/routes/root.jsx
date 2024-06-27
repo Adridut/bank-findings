@@ -38,7 +38,7 @@ export default function Root() {
               </li>
             </ul>
           </nav>
-          <Link className="link-logout-button" to="/login">Logout</Link>
+          <Link className="link-logout-button" to="/">Logout</Link>
         </div>
         <div id="detail">
           <Outlet />
