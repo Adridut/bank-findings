@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import { redirect, Form, Link } from "react-router-dom";
 import "./login.css" 
 
-const Login = () => {
+
+export default function Login () {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -14,15 +16,23 @@ const Login = () => {
         setPassword(e.target.value);
     };
 
-    const handleSubmit = (e) => {
+    const { login } = useAuth();
+    const handleLogin = async (e) => {
         e.preventDefault();
-        // Perform login logic here
+        // Here you would usually send a request to your backend to authenticate the user
+        // For the sake of this example, we're using a mock authentication
+        if (username === "user" && password === "password") {
+        // Replace with actual authentication logic
+        await login({ username });
+        } else {
+        alert("Invalid username or password");
+        }
     };
 
     return (
         <div className='login-container'>
             <h1 className='login-header'>Bank Findings and Measures Library</h1>
-            <form onSubmit={handleSubmit} className='login-form'>
+            <form onSubmit={handleLogin} className='login-form'>
                 <h2>Sign In</h2>
                 <input
                     type="text"
@@ -40,10 +50,9 @@ const Login = () => {
                     onChange={handlePasswordChange}
                     placeholder='Password'
                 />
-                <Link className="link-button" to="/portal">Login</Link>
+                <button className="link-button" type="submit">Login</button>
             </form>
         </div>
     );
 };
 
-export default Login;

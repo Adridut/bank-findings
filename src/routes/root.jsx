@@ -2,6 +2,8 @@ import { Outlet, Link, useLoaderData, Form, redirect, NavLink, useNavigation, us
 import "./root.css"
 import { useEffect } from "react";
 import { getContacts, createContact } from "../contacts";
+import { useAuth } from "../hooks/useAuth";
+
 
 export async function action() {
   const contact = await createContact();
@@ -19,7 +21,11 @@ export default function Root() {
     const { contacts, q } = useLoaderData();
     const navigation = useNavigation();
     const submit = useSubmit();
+    const { logout } = useAuth();
 
+    const handleLogout = () => {
+      logout();
+    };
 
     useEffect(() => {
       document.getElementById("q").value = q;
@@ -81,9 +87,9 @@ export default function Root() {
               </p>
             )}
           </nav>
-          <Link className="link-logout-button" to="/">Logout</Link>
+          <button className="link-logout-button" onClick={handleLogout}>Logout</button>
         </div>
-        <div id="detail"  className={navigation.state === "loading" ? "loading" : ""}>
+        <div id="detail" className={navigation.state === "loading" ? "loading" : ""}>
           <Outlet />
         </div>
       </>
