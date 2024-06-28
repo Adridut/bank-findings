@@ -1,6 +1,6 @@
 import { Outlet, Link, useLoaderData, Form, redirect, NavLink, useNavigation, useSubmit} from "react-router-dom";
 import "./root.css"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getContacts, createContact, createGroup, getGroups } from "../contacts";
 
 // export async function action() {
@@ -39,6 +39,17 @@ export default function Root() {
     document.getElementById("q").value = q;
   }, [q]);
 
+  const [visible, setVisible] = useState(0)
+
+  const setVisibility = (id) =>{
+    if (id === visible){
+      return () => setVisible(0)
+    } else {
+      return () => setVisible(id)
+    }
+  }
+
+
   return (
     <>
       <div id="sidebar">
@@ -76,33 +87,35 @@ export default function Root() {
             <ul>
               {groups.map((group) => (
                 <li key={group.id}>
-                  <div>
+                  <button onClick={setVisibility(group.id)}>
                     {group.name} {group.id}
-                  </div>
+                  </button>
                   <Form method="post">
                     <button type="submit" name="form-id" value={group.id}>New</button>
                   </Form>
-                  {contacts.filter(function(contact){return contact.groupId === group.id}).length ? (
-                    <ul>
-                      {contacts.filter(function(contact){return contact.groupId === group.id}).map((contact) => (
-                        <li key={contact.id}>
-                          <NavLink to={`contacts/${contact.id}`}>
-                            {contact.first || contact.last ? (
-                              <>
-                                {contact.first} {contact.last} {contact.id} {contact.groupId}
-                              </>
-                            ) : (
-                              <i>No Data</i>
-                            )}{" "}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p>
-                      <i>No findings</i>
-                    </p>
-                  )}
+                  {visible === group.id ? (
+                    contacts.filter(function(contact){return contact.groupId === group.id}).length ? (
+                      <ul>
+                        {contacts.filter(function(contact){return contact.groupId === group.id}).map((contact) => (
+                          <li key={contact.id}>
+                            <NavLink to={`contacts/${contact.id}`}>
+                              {contact.first || contact.last ? (
+                                <>
+                                  {contact.first} {contact.last} {contact.id} {contact.groupId}
+                                </>
+                              ) : (
+                                <i>No Data</i>
+                              )}{" "}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p>
+                        <i>No findings</i>
+                      </p>
+                    )
+                  ) : ( null )}
                 </li>
               ))}
             </ul>
