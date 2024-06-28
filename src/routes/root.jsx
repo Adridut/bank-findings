@@ -1,12 +1,8 @@
 import { Outlet, Link, useLoaderData, Form, redirect, NavLink, useNavigation, useSubmit} from "react-router-dom";
 import "./root.css"
 import { useEffect, useState } from "react";
-import { getContacts, createContact, createGroup, getGroups } from "../contacts";
+import { getContacts, createContact, createGroup, getGroups, deleteGroup, deleteContact } from "../contacts";
 
-// export async function action() {
-//   const contact = await createContact();
-//   return redirect("/portal/contacts/" + contact.id + "/edit");
-// }
 
 export async function action({request, params}) {
   const formData = await request.formData();
@@ -14,6 +10,14 @@ export async function action({request, params}) {
   if (formId === "create-group") {
     const group = await createGroup();
     return redirect("/portal/" + group.id + "/edit_group");
+  } else if (formId.includes("delete-group")) {
+    const groupId = formId.split("-").slice(-1)[0]
+    await deleteGroup(groupId);
+    const contacts = await getContacts(groupId);
+    for (let i = 0; i < contacts.length; i++) {
+      await deleteContact(contacts[i].id);
+    }
+    return redirect("/portal");
   }
   else {
     const contact = await createContact(formId);
@@ -92,6 +96,9 @@ export default function Root() {
                   </button>
                   <Form method="post">
                     <button type="submit" name="form-id" value={group.id}>New</button>
+                  </Form>
+                  <Form method="post">
+                    <button type="submit" name="form-id" value={"delete-group-"+group.id}>Delete</button>
                   </Form>
                   {visible === group.id ? (
                     contacts.filter(function(contact){return contact.groupId === group.id}).length ? (
