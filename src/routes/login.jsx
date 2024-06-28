@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import "./login.css" 
+import ecb_logo from '../images/ecb.jpg';
+
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -21,6 +23,7 @@ const Login = () => {
 
     return (
         <div className='login-container'>
+            <img src={ecb_logo} className='ecb-logo'/>
             <h1 className='login-header'>Bank Findings and Measures Library</h1>
             <form onSubmit={handleSubmit} className='login-form'>
                 <h2>Sign In</h2>

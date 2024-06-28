@@ -1,7 +1,7 @@
 /* Styling for the login form */
 .login-container {
     width: 100%;
-    background-color: aliceblue;
+    background-color: white;
 }
 
 .login-header {
@@ -51,4 +51,11 @@
 /* Styling for the link button on hover */
 .link-button:hover {
     background-color: #0056b3;
+}
+
+.ecb-logo {
+    width: 200px;
+    height: 200px;
+    margin-left: 20px;
+    position: absolute;
 }

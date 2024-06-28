@@ -2,9 +2,7 @@ import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 
-// localforage.dropInstance().then(function() {
-//   console.log('Dropped the store of the current instance');
-// });
+
 
 export async function getGroups(query){
   let groups = await localforage.getItem("groups");
@@ -25,6 +23,9 @@ export async function getContacts(query) {
 }
 
 export async function createGroup() {
+  // localforage.dropInstance().then(function() {
+  // console.log('Dropped the store of the current instance');
+  // });
   let id = Math.random().toString(36).substring(2, 9);
   let group = { id, createdAt: Date.now() };
   let groups = await getGroups();
