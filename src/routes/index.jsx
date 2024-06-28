@@ -1,13 +1,10 @@
+import ecb_logo from "../images/ecb.jpg";
+
 export default function Index() {
     return (
-      <p id="zero-state">
-        This is a demo for React Router.
-        <br />
-        Check out{" "}
-        <a href="https://reactrouter.com">
-          the docs at reactrouter.com
-        </a>
-        .
-      </p>
+      <div className="container">
+        <img src={ecb_logo} alt="ECB Logo" />
+        <div>Select banks and their findings from the left panel or create new ones!</div>
+      </div>
     );
   }
