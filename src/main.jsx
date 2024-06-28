@@ -12,6 +12,8 @@ import Login from "./routes/login";
 import EditContact, {
   action as editAction,
 } from "./routes/edit";
+import EditGroup, { action as editGroupAction} from "./routes/edit_group";
+import {loader as groupLoder} from "./routes/group";
 
 import Root, { loader as rootLoader, action as rootAction } from "./routes/root";
 import Contact, {
@@ -31,6 +33,12 @@ const router = createBrowserRouter([
     action: rootAction,
     children: [
       { index: true, element: <Index /> },
+      {
+        path: ":groupId/edit_group",
+        element: <EditGroup />,
+        action: editGroupAction,
+        loader: groupLoder,
+      },
       {
         path: "contacts/:contactId",
         element: <Contact />,
