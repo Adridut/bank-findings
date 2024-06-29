@@ -22,11 +22,15 @@
     display: flex;
 }
 
+.group-name-container {
+    display: flex;
+    width: 70%;
+}
+
 .group-name {
     cursor: pointer;
     font-weight: bold;
     font-size: large;
-    width: 70%;
     margin-left: 5px;
 }
 
@@ -44,4 +48,9 @@
 
 .collapse-arrow {
     margin: 4px
+}
+
+.findings-container {
+    margin-left: 20px !important;
+    /* list-style: circle !important; */
 }

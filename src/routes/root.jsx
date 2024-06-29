@@ -87,10 +87,12 @@ export default function Root() {
             <ul>
               {groups.map((group) => (
                 <li key={group.id}>
-                  <div className="group" onClick={setVisibility(group.id)}>
-                    {visible === group.id ? <IoIosArrowDown className="collapse-arrow" size={20}/> : <IoIosArrowForward className="collapse-arrow" size={20}/>}
-                    <div className="group-name">
-                      {group.name}
+                  <div className="group">
+                    <div className="group-name-container" onClick={setVisibility(group.id)}>
+                      {visible === group.id ? <IoIosArrowDown className="collapse-arrow" size={20}/> : <IoIosArrowForward className="collapse-arrow" size={20}/>}
+                      <div className="group-name">
+                        {group.name}
+                      </div>
                     </div>
                     <Form method="post">
                       <button type="submit" name="form-id" value={group.id} className="group-button"><FaPlusCircle  size={20}/></button>
@@ -101,13 +103,13 @@ export default function Root() {
                   </div>
                   {visible === group.id ? (
                     contacts.filter(function(contact){return contact.groupId === group.id}).length ? (
-                      <ul>
+                      <ul className="findings-container">
                         {contacts.filter(function(contact){return contact.groupId === group.id}).map((contact) => (
                           <li key={contact.id}>
                             <NavLink to={`contacts/${contact.id}`}>
                               {contact.first || contact.last ? (
                                 <>
-                                  {contact.first} {contact.last} {contact.id} {contact.groupId}
+                                  {contact.first} {contact.last}
                                 </>
                               ) : (
                                 <i>No Data</i>

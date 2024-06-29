@@ -211,7 +211,7 @@ form[action$="destroy"] button {
   padding-top: 1rem;
 }
 
-#sidebar nav a span {
+/* #sidebar nav a span {
   float: right;
   color: #eeb004;
 }
@@ -224,7 +224,7 @@ i {
 }
 #sidebar nav .active i {
   color: inherit;
-}
+} */
 
 #sidebar ul {
   padding: 0;
@@ -250,7 +250,7 @@ i {
   gap: 1rem;
 }
 
-#sidebar nav a:hover {
+/* #sidebar nav a:hover {
   background: #e3e3e3;
 }
 
@@ -261,7 +261,7 @@ i {
 
 #sidebar nav a.pending {
   color: hsl(224, 98%, 58%);
-}
+} */
 
 #detail {
   flex: 1;
