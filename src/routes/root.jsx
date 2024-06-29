@@ -2,7 +2,7 @@ import { Outlet, Link, useLoaderData, Form, redirect, NavLink, useNavigation, us
 import "./root.css"
 import { useEffect, useState } from "react";
 import { getContacts, createContact, createGroup, getGroups, deleteGroup, deleteContact } from "../contacts";
-import { FaTrash, FaPlusCircle, FaEdit  } from "react-icons/fa";
+import { FaTrash, FaPlusCircle, FaEdit, FaRegCircle   } from "react-icons/fa";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 
 
@@ -65,7 +65,7 @@ export default function Root() {
   return (
     <>
       <div id="sidebar">
-        <div>
+        <div className="search-container">
           <Form id="search-form" role="search">
             <input
               className="search-bar"
@@ -83,7 +83,7 @@ export default function Root() {
             />
           </Form>
           <Form method="post">
-            <button type="submit" name="form-id" value="create-group" className="group-button"><FaPlusCircle  size={30} /></button>
+            <button type="submit" name="form-id" value="create-group" className="group-button add-icon"><FaPlusCircle  size={30} /></button>
           </Form>
         </div>
         <nav className="nav-bar">
@@ -99,21 +99,22 @@ export default function Root() {
                       </div>
                     </div>
                     <Form method="post">
-                      <button type="submit" name="form-id" value={"edit-group-"+group.id} className="group-button"><FaEdit size={18}/></button>
+                      <button type="submit" name="form-id" value={"edit-group-"+group.id} className="group-button edit-icon"><FaEdit size={18}/></button>
                     </Form>
                     <Form method="post">
-                      <button type="submit" name="form-id" value={group.id} className="group-button"><FaPlusCircle  size={18}/></button>
+                      <button type="submit" name="form-id" value={group.id} className="group-button add-icon"><FaPlusCircle  size={18}/></button>
                     </Form>
                     <Form method="post">
-                      <button type="submit" name="form-id" value={"delete-group-"+group.id} className="group-button"><FaTrash size={18}/></button>
+                      <button type="submit" name="form-id" value={"delete-group-"+group.id} className="group-button trash-icon"><FaTrash size={18}/></button>
                     </Form>
                   </div>
                   {visible === group.id ? (
                     contacts.filter(function(contact){return contact.groupId === group.id}).length ? (
-                      <ul className="findings-container">
+                      <ul>
                         {contacts.filter(function(contact){return contact.groupId === group.id}).map((contact) => (
-                          <li key={contact.id}>
+                          <li key={contact.id} className="findings-container">
                             <NavLink to={`contacts/${contact.id}`}>
+                            <FaRegCircle className="collapse-arrow" size={10}/>
                             <div className="findings">
                                 {contact.title ? (
                                   <>

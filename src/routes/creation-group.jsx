@@ -20,11 +20,11 @@ export default function CreateGroup() {
                     aria-label="Bank name"
                     type="text"
                     name="name"
-                    className="edit-group-input"
+                    className="bank-title-input"
                     required={true}
             />
-            <button type="submit" className="edit-group-button">Save</button>
-            <button type="button" className="edit-group-button" onClick={() => {
+            <button type="submit" className="edit-group-button edit-group-button">Save</button>
+            <button type="button" className="edit-group-button delete-group-button" onClick={() => {
                 navigate(-1);
             }}>Cancel</button>
         </Form>

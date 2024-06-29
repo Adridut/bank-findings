@@ -39,8 +39,8 @@ export default function CreateFinding() {
                 className="edit-group-input"
             />
             <div>
-                <button type="submit" className="edit-group-button">Save</button>
-                <button type="button" className="edit-group-button" onClick={() => {
+                <button type="submit" className="edit-group-button edit-group-button">Save</button>
+                <button type="button" className="edit-group-button delete-group-button" onClick={() => {
                     navigate(-1);
                 }}>Cancel</button>
             </div>

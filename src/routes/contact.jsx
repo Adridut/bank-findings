@@ -34,7 +34,7 @@ export default function Contact() {
               }
             }}
           >
-            <button type="submit" className="edit-group-button">Delete</button>
+            <button type="submit" className="edit-group-button delete-group-button">Delete</button>
           </Form>
         </div>
       </div>

@@ -1,5 +1,7 @@
 :root {
   --main-color:#003299;
+  --positive-color: #537132;
+  --negative-color: #A30000;
 }
 
 /* width */
@@ -144,10 +146,6 @@ button:active {
   flex-direction: column;
 }
 
-#sidebar > * {
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
 
 #sidebar h1 {
   font-size: 1rem;
@@ -248,9 +246,7 @@ i {
 #sidebar nav a {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   overflow: hidden;
-
   white-space: pre;
   padding: 0.5rem;
   border-radius: 8px;

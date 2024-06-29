@@ -1,7 +1,7 @@
 .link-logout-button {
     display: inline-block;
     padding: 10px;
-    background-color: var(--main-color);
+    background-color: var(--negative-color);
     color: #fff;
     text-decoration: none;
     border: none;
@@ -20,6 +20,13 @@
 
 .group {
     display: flex;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    align-items: center;
+}
+
+.group:hover {
+    background-color: white;
 }
 
 .group-name-container {
@@ -30,7 +37,6 @@
 .group-name {
     cursor: pointer;
     font-weight: bold;
-    font-size: large;
     margin-left: 5px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -44,20 +50,38 @@
     border: none;
     cursor: pointer;
     padding: 4px;
+    width: 10%;
 }
 
 .group-button:hover {
     box-shadow: none;
 }
 
-.collapse-arrow {
-    margin-top: 4px;
-    width: 30%;
+.trash-icon:hover {
+    color: var(--negative-color);
 }
 
-.findings-container {
-    margin-left: 20px !important;
-    /* list-style: circle !important; */
+.edit-icon:hover {
+    color: var(--main-color);
+}
+
+.add-icon:hover {
+    color: var(--positive-color);
+}
+
+.collapse-arrow {
+    margin-top: 4px;
+    /* width: 30%; */
+}
+
+.findings-container{
+    padding-left: 2rem;
+    padding-right: 1rem;
+    align-items: center;
+}
+
+.findings-container:hover {
+    background-color: white;
 }
 
 .search-bar {
@@ -76,4 +100,10 @@
 .findings {
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.search-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    align-self: center;
 }
