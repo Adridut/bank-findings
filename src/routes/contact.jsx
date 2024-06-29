@@ -13,7 +13,7 @@ export default function Contact() {
   return (
     <div id="contact">
       <div>
-        <h1>{contact.title}</h1>
+        <h1 className="finding-title">{contact.title}</h1>
         {contact.finding && <p>{contact.finding}</p>}
         <h2>Measures:</h2>
         {contact.measure && <p>{contact.measure}</p>}

@@ -21,6 +21,7 @@ export default function EditGroup() {
                     type="text"
                     name="name"
                     className="edit-group-input"
+                    required={true}
                     defaultValue={group?.name}
             />
             <button type="submit" className="edit-group-button">Save</button>

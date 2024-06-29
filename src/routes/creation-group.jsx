@@ -21,6 +21,7 @@ export default function CreateGroup() {
                     type="text"
                     name="name"
                     className="edit-group-input"
+                    required={true}
             />
             <button type="submit" className="edit-group-button">Save</button>
             <button type="button" className="edit-group-button" onClick={() => {

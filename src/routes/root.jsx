@@ -114,13 +114,15 @@ export default function Root() {
                         {contacts.filter(function(contact){return contact.groupId === group.id}).map((contact) => (
                           <li key={contact.id}>
                             <NavLink to={`contacts/${contact.id}`}>
-                              {contact.title ? (
-                                <>
-                                  {contact.title}
-                                </>
-                              ) : (
-                                <i>No Data</i>
-                              )}{" "}
+                            <div className="findings">
+                                {contact.title ? (
+                                  <>
+                                    {contact.title}
+                                  </>
+                                ) : (
+                                  <i>No Data</i>
+                                )}{" "}
+                              </div>
                             </NavLink>
                           </li>
                         ))}

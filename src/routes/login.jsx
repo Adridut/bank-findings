@@ -34,6 +34,7 @@ const Login = () => {
                     onChange={handleUsernameChange}
                     placeholder='Username'
                     className="login-input"
+                    required={true}
                 />
                 <input
                     className="login-input"
@@ -42,6 +43,7 @@ const Login = () => {
                     value={password}
                     onChange={handlePasswordChange}
                     placeholder='Password'
+                    required={true}
                 />
                 <Link className="link-button" to="/portal">Login</Link>
             </form>

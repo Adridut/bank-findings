@@ -32,7 +32,11 @@
     font-weight: bold;
     font-size: large;
     margin-left: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
 }
+
 
 .group-button {
     background: none;
@@ -47,7 +51,8 @@
 }
 
 .collapse-arrow {
-    margin: 4px
+    margin-top: 4px;
+    width: 30%;
 }
 
 .findings-container {
@@ -66,4 +71,9 @@
     line-height: 1.5;
     margin: 0;
     width: 100%;
+}
+
+.findings {
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

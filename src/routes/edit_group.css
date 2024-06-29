@@ -31,3 +31,7 @@
     margin-bottom: 10px;
     width: 5rem;
 }
+
+.finding-title {
+    word-wrap: break-word;
+}
