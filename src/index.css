@@ -52,7 +52,7 @@ body {
   line-height: 1.5;
   color: #121212;
 }
-textarea,
+/* textarea,
 input,
 button {
   font-size: 1rem;
@@ -68,7 +68,7 @@ button {
 button {
   color: #3992ff;
   font-weight: 500;
-}
+} */
 
 textarea:hover,
 input:hover,

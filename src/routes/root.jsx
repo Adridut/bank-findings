@@ -2,6 +2,11 @@ import { Outlet, Link, useLoaderData, Form, redirect, NavLink, useNavigation, us
 import "./root.css"
 import { useEffect, useState } from "react";
 import { getContacts, createContact, createGroup, getGroups, deleteGroup, deleteContact } from "../contacts";
+import { FaTrash, FaPlusCircle } from "react-icons/fa";
+import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
+
+
+
 
 
 export async function action({request, params}) {
@@ -72,15 +77,6 @@ export default function Root() {
                 });
               }}
             />
-            <div
-              id="search-spinner"
-              aria-hidden
-              hidden={true}
-            />
-            <div
-              className="sr-only"
-              aria-live="polite"
-            ></div>
           </Form>
           <Form method="post">
             <button type="submit" name="form-id" value="create-group">New</button>
@@ -91,15 +87,18 @@ export default function Root() {
             <ul>
               {groups.map((group) => (
                 <li key={group.id}>
-                  <button onClick={setVisibility(group.id)}>
-                    {group.name} {group.id}
-                  </button>
-                  <Form method="post">
-                    <button type="submit" name="form-id" value={group.id}>New</button>
-                  </Form>
-                  <Form method="post">
-                    <button type="submit" name="form-id" value={"delete-group-"+group.id}>Delete</button>
-                  </Form>
+                  <div className="group" onClick={setVisibility(group.id)}>
+                    {visible === group.id ? <IoIosArrowDown className="collapse-arrow" size={20}/> : <IoIosArrowForward className="collapse-arrow" size={20}/>}
+                    <div className="group-name">
+                      {group.name}
+                    </div>
+                    <Form method="post">
+                      <button type="submit" name="form-id" value={group.id} className="group-button"><FaPlusCircle  size={20}/></button>
+                    </Form>
+                    <Form method="post">
+                      <button type="submit" name="form-id" value={"delete-group-"+group.id} className="group-button"><FaTrash size={20}/></button>
+                    </Form>
+                  </div>
                   {visible === group.id ? (
                     contacts.filter(function(contact){return contact.groupId === group.id}).length ? (
                       <ul>

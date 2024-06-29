@@ -17,3 +17,31 @@
 .nav-bar {
     border-bottom: 1px solid #e3e3e3;
 }
+
+.group {
+    display: flex;
+}
+
+.group-name {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+    width: 70%;
+    margin-left: 5px;
+}
+
+.group-button {
+    background: none;
+    padding: 0px;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.group-button:hover {
+    box-shadow: none;
+}
+
+.collapse-arrow {
+    margin: 4px
+}
