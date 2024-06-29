@@ -15,6 +15,10 @@
     height: 40%;
 }
 
+.finding-text {
+    white-space: pre-line;
+}
+
 .edit-group-button-container {
     display: flex;
 }

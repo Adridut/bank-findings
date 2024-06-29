@@ -173,6 +173,7 @@ button:active {
   padding-top: 1rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid #e3e3e3;
+  border-top: 1px solid #e3e3e3;
 }
 
 #sidebar > div form {

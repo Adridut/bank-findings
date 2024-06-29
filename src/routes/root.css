@@ -16,6 +16,7 @@
 
 .nav-bar {
     border-bottom: 1px solid #e3e3e3;
+    border-top: 1px solid #e3e3e3;
 }
 
 .group {
@@ -78,6 +79,13 @@
     padding-left: 2rem;
     padding-right: 1rem;
     align-items: center;
+}
+
+.no-findings {
+    padding-left: 2rem;
+    padding-right: 1rem;
+    align-items: center;
+    font-style: italic;
 }
 
 .findings-container:hover {

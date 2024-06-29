@@ -121,7 +121,7 @@ export default function Root() {
                                     {contact.title}
                                   </>
                                 ) : (
-                                  <i>No Data</i>
+                                  <>No Data</>
                                 )}{" "}
                               </div>
                             </NavLink>
@@ -129,18 +129,14 @@ export default function Root() {
                         ))}
                       </ul>
                     ) : (
-                      <p>
-                        <i>No findings</i>
-                      </p>
+                      <div className="no-findings">No findings registered</div>
                     )
                   ) : ( null )}
                 </li>
               ))}
             </ul>
           ) : (
-            <p>
-              <i>No banks registered</i>
-            </p>
+              <div className="no-findings">No bank registered</div>
           )}
         </nav>
         <Link className="link-logout-button" to="/">Logout</Link>
