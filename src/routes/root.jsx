@@ -2,7 +2,7 @@ import { Outlet, Link, useLoaderData, Form, redirect, NavLink, useNavigation, us
 import "./root.css"
 import { useEffect, useState } from "react";
 import { getContacts, createContact, createGroup, getGroups, deleteGroup, deleteContact } from "../contacts";
-import { FaTrash, FaPlusCircle } from "react-icons/fa";
+import { FaTrash, FaPlusCircle, FaEdit  } from "react-icons/fa";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 
 
@@ -13,9 +13,13 @@ export async function action({request, params}) {
   const formData = await request.formData();
   const formId = formData.get("form-id");
   if (formId === "create-group") {
-    const group = await createGroup();
-    return redirect("/portal/" + group.id + "/edit_group");
-  } else if (formId.includes("delete-group")) {
+    // const group = await createGroup();
+    return redirect("/portal/create_group");
+  } else if (formId.includes("edit-group")) {
+    const groupId = formId.split("-").slice(-1)[0]
+    return redirect("/portal/" + groupId + "/edit_group");
+
+  }else if (formId.includes("delete-group")) {
     const groupId = formId.split("-").slice(-1)[0]
     await deleteGroup(groupId);
     const contacts = await getContacts(groupId);
@@ -57,8 +61,7 @@ export default function Root() {
       return () => setVisible(id)
     }
   }
-
-
+  
   return (
     <>
       <div id="sidebar">
@@ -96,10 +99,13 @@ export default function Root() {
                       </div>
                     </div>
                     <Form method="post">
-                      <button type="submit" name="form-id" value={group.id} className="group-button"><FaPlusCircle  size={20}/></button>
+                      <button type="submit" name="form-id" value={"edit-group-"+group.id} className="group-button"><FaEdit size={18}/></button>
                     </Form>
                     <Form method="post">
-                      <button type="submit" name="form-id" value={"delete-group-"+group.id} className="group-button"><FaTrash size={20}/></button>
+                      <button type="submit" name="form-id" value={group.id} className="group-button"><FaPlusCircle  size={18}/></button>
+                    </Form>
+                    <Form method="post">
+                      <button type="submit" name="form-id" value={"delete-group-"+group.id} className="group-button"><FaTrash size={18}/></button>
                     </Form>
                   </div>
                   {visible === group.id ? (

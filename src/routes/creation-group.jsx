@@ -1,16 +1,16 @@
 import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
-import { updateGroup } from "../contacts";
+import { updateGroup, createGroup } from "../contacts";
 import "./edit_group.css";
 
 export async function action({ request, params }) {
     const formData = await request.formData();
     const updates = Object.fromEntries(formData);
-    await updateGroup(params.groupId, updates);
+    const group = await createGroup()
+    await updateGroup(group.id, updates);
     return redirect("/portal");
 }
 
-export default function EditGroup() {
-    const { group } = useLoaderData();
+export default function CreateGroup() {
     const navigate = useNavigate();
 
 
@@ -21,7 +21,6 @@ export default function EditGroup() {
                     type="text"
                     name="name"
                     className="edit-group-input"
-                    defaultValue={group?.name}
             />
             <button type="submit" className="edit-group-button">Save</button>
             <button type="button" className="edit-group-button" onClick={() => {
