@@ -12,15 +12,14 @@ import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 export async function action({request, params}) {
   const formData = await request.formData();
   const formId = formData.get("form-id");
+  const groupId = formId.split("-").slice(-1)[0]
   if (formId === "create-group") {
     // const group = await createGroup();
     return redirect("/portal/create_group");
   } else if (formId.includes("edit-group")) {
-    const groupId = formId.split("-").slice(-1)[0]
     return redirect("/portal/" + groupId + "/edit_group");
 
   }else if (formId.includes("delete-group")) {
-    const groupId = formId.split("-").slice(-1)[0]
     await deleteGroup(groupId);
     const contacts = await getContacts(groupId);
     for (let i = 0; i < contacts.length; i++) {
@@ -29,8 +28,9 @@ export async function action({request, params}) {
     return redirect("/portal");
   }
   else {
-    const contact = await createContact(formId);
-    return redirect("/portal/contacts/" + contact.id + "/edit");
+    // const contact = await createContact(formId);
+    // return redirect("/portal/contacts/" + contact.id + "/edit");
+    return redirect("/portal/"+groupId+"/create_finding")
   }
 }
 

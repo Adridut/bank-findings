@@ -13,6 +13,7 @@ import EditContact, {
   action as editAction,
 } from "./routes/edit";
 import EditGroup, { action as editGroupAction} from "./routes/edit_group";
+import CreateFinding, {action as createFindingAction} from "./routes/creation-finding";
 import GroupCreation, {action as createGroupAction} from "./routes/creation-group";
 import {loader as groupLoder} from "./routes/group";
 
@@ -43,6 +44,12 @@ const router = createBrowserRouter([
         path: ":groupId/edit_group",
         element: <EditGroup />,
         action: editGroupAction,
+        loader: groupLoder,
+      },
+      {
+        path: ":groupId/create_finding",
+        element: <CreateFinding />,
+        action: createFindingAction,
         loader: groupLoder,
       },
       {
