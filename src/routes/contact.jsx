@@ -15,7 +15,7 @@ export default function Contact() {
       <div>
         <h1 className="finding-title">{contact.title}</h1>
         {contact.finding && <p>{contact.finding}</p>}
-        <h2>Measures:</h2>
+        {contact.measure && <h2>Measures:</h2>}
         {contact.measure && <p>{contact.measure}</p>}
         <div>
           <Form action="edit">

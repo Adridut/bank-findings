@@ -23,6 +23,7 @@ export default function EditContact() {
                 name="title"
                 className="edit-group-title-input"
                 defaultValue={contact?.title}
+                required={true}
             />
             <textarea
                 placeholder="Finding text"
