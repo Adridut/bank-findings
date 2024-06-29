@@ -65,6 +65,7 @@ export default function Root() {
         <div>
           <Form id="search-form" role="search">
             <input
+              className="search-bar"
               id="q"
               aria-label="Search contacts"
               placeholder="Search"
@@ -79,7 +80,7 @@ export default function Root() {
             />
           </Form>
           <Form method="post">
-            <button type="submit" name="form-id" value="create-group">New</button>
+            <button type="submit" name="form-id" value="create-group" className="group-button"><FaPlusCircle  size={30} /></button>
           </Form>
         </div>
         <nav className="nav-bar">

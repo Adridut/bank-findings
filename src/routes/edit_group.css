@@ -1,0 +1,24 @@
+.edit-group-input {
+    width: 20rem;
+}
+
+.edit-group-button-container {
+    display: flex;
+}
+
+.edit-group-button {
+    display: inline-block;
+    padding: 10px;
+    background-color: var(--main-color);
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 80%;
+    text-align: center;
+    align-self: center;
+    margin: 5px;
+    margin-bottom: 10px;
+    width: 5rem;
+}

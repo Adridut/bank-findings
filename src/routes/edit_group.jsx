@@ -1,5 +1,6 @@
 import { Form, useLoaderData, redirect, useNavigate } from "react-router-dom";
 import { updateGroup } from "../contacts";
+import "./edit_group.css";
 
 export async function action({ request, params }) {
     const formData = await request.formData();
@@ -19,10 +20,11 @@ export default function EditGroup() {
                     aria-label="Bank name"
                     type="text"
                     name="name"
+                    className="edit-group-input"
                     defaultValue={group?.bank_name}
             />
-            <button type="submit">Save</button>
-            <button type="button" onClick={() => {
+            <button type="submit" className="edit-group-button">Save</button>
+            <button type="button" className="edit-group-button" onClick={() => {
                 navigate(-1);
             }}>Cancel</button>
         </Form>
