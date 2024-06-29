@@ -117,9 +117,6 @@ button:active {
   color: #eeb004;
 }
 
-form[action$="destroy"] button {
-  color: #f44250;
-}
 
 .sr-only {
   position: absolute;
@@ -386,9 +383,6 @@ i {
   margin: 0 0 0 8rem;
 }
 
-#contact-form p:last-child button[type="button"] {
-  color: inherit;
-}
 
 #zero-state {
   margin: 2rem auto;

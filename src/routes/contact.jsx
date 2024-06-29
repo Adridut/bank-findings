@@ -1,5 +1,6 @@
 import { Form, useLoaderData } from "react-router-dom";
 import { getContact } from "../contacts";
+import "./edit_group.css";
 
 export async function loader({ params }) {
   const contact = await getContact(params.contactId);
@@ -12,43 +13,13 @@ export default function Contact() {
   return (
     <div id="contact">
       <div>
-        <img
-          key={contact.avatar}
-          src={
-            contact.avatar ||
-            `https://robohash.org/${contact.id}.png?size=200x200`
-          }
-        />
-      </div>
-
-      <div>
-        <h1>
-          {contact.first || contact.last ? (
-            <>
-              {contact.first} {contact.last}
-            </>
-          ) : (
-            <i>No Name</i>
-          )}{" "}
-          <Favorite contact={contact} />
-        </h1>
-
-        {contact.twitter && (
-          <p>
-            <a
-              target="_blank"
-              href={`https://twitter.com/${contact.twitter}`}
-            >
-              {contact.twitter}
-            </a>
-          </p>
-        )}
-
-        {contact.notes && <p>{contact.notes}</p>}
-
+        <h1>{contact.title}</h1>
+        {contact.finding && <p>{contact.finding}</p>}
+        <h2>Measures:</h2>
+        {contact.measure && <p>{contact.measure}</p>}
         <div>
           <Form action="edit">
-            <button type="submit">Edit</button>
+            <button type="submit" className="edit-group-button">Edit</button>
           </Form>
           <Form
             method="post"
@@ -63,7 +34,7 @@ export default function Contact() {
               }
             }}
           >
-            <button type="submit">Delete</button>
+            <button type="submit" className="edit-group-button">Delete</button>
           </Form>
         </div>
       </div>
@@ -71,21 +42,3 @@ export default function Contact() {
   );
 }
 
-function Favorite({ contact }) {
-  const favorite = contact.favorite;
-  return (
-    <Form method="post">
-      <button
-        name="favorite"
-        value={favorite ? "false" : "true"}
-        aria-label={
-          favorite
-            ? "Remove from favorites"
-            : "Add to favorites"
-        }
-      >
-        {favorite ? "★" : "☆"}
-      </button>
-    </Form>
-  );
-}
