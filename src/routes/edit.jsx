@@ -15,16 +15,16 @@ export default function EditContact() {
 
 
     return (
-        <Form method="post" id="contact-form">
+        <Form method="post" id="contact-form" className="edit-group-container">
             <input
                 placeholder="Finding title"
                 aria-label="Finding title"
                 type="text"
                 name="title"
-                className="edit-group-input"
+                className="edit-group-title-input"
                 defaultValue={contact?.title}
             />
-            <input
+            <textarea
                 placeholder="Finding text"
                 aria-label="Finding text"
                 type="text"
@@ -32,7 +32,7 @@ export default function EditContact() {
                 className="edit-group-input"
                 defaultValue={contact?.finding}
             />
-            <input
+            <textarea
                 placeholder="Measure"
                 aria-label="Measure"
                 type="text"

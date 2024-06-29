@@ -1,5 +1,14 @@
+.edit-group-container {
+    height: 100%;   
+}
+
+.edit-group-title-input {
+    width: 100%;
+}
+
 .edit-group-input {
-    width: 20rem;
+    width: 100%;
+    height: 40%;
 }
 
 .edit-group-button-container {

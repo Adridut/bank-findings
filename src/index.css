@@ -276,6 +276,7 @@ i {
   flex: 1;
   padding: 2rem 4rem;
   width: 100%;
+  overflow-y: auto;
 }
 
 #detail.loading {
