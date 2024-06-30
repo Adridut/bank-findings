@@ -1,8 +1,8 @@
 import { Outlet, Link, useLoaderData, Form, redirect, NavLink, useNavigation, useSubmit} from "react-router-dom";
 import "./root.css"
 import { useEffect, useState } from "react";
-import { getContacts, createContact, createGroup, getGroups, deleteGroup, deleteContact } from "../contacts";
-import { FaTrash, FaPlusCircle, FaEdit, FaRegCircle   } from "react-icons/fa";
+import { getContacts, createContact, createGroup, getGroups, deleteGroup, deleteContact, logout, getCurrentUser } from "../contacts";
+import { FaTrash, FaPlusCircle, FaEdit, FaRegCircle, FaRegBell, FaBell } from "react-icons/fa";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 
 export async function action({request, params}) {
@@ -23,6 +23,7 @@ export async function action({request, params}) {
     }
     return redirect("/portal");
   } else if (formId === "log-out") {
+    await logout();
     localStorage.setItem("token", false);
     return redirect("/");
   }
@@ -38,11 +39,13 @@ export async function loader({ request }) {
   const q = url.searchParams.get("q");
   const contacts = await getContacts(q);
   const groups = await getGroups()
-  return { contacts, q, groups };
+  const currentUser = await getCurrentUser();
+  console.log(currentUser)
+  return { contacts, q, groups, currentUser };
 }
 
 export default function Root() {
-  const { contacts, q, groups } = useLoaderData();
+  const { contacts, q, groups,  currentUser } = useLoaderData();
   const navigation = useNavigation();
   const submit = useSubmit();
 
@@ -65,6 +68,17 @@ export default function Root() {
     <>
       <div id="sidebar">
         <div className="search-container">
+          <div className="parent">
+            {currentUser.notifications.length ? <FaBell className="edit-icon" size={30} />
+              : <FaRegBell className="edit-icon" size={30} />}
+            { currentUser.notifications.length ? <div className="notifications child">
+              {currentUser.notifications.map((notification) => (
+                <li key={notification}>
+                  {notification}
+                </li>
+              ))}
+            </div> : ""}
+          </div>
           <Form id="search-form" role="search">
             <input
               className="search-bar"
@@ -138,7 +152,7 @@ export default function Root() {
               <div className="no-findings">No bank registered</div>
           )}
         </nav>
-        <Form method="post">
+        <Form method="post" className="link-logout-button-container">
           <button type="submit" className="link-logout-button" name="form-id" value="log-out">Logout</button>
         </Form>
       </div>

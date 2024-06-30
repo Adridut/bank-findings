@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, Form, redirect } from "react-router-dom";
 import "./login.css" 
 import ecb_logo from '../images/ecb.jpg';
-import { login} from '../contacts';
+import { login, createUser } from '../contacts';
 
 
 

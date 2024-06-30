@@ -53,7 +53,7 @@ export async function createUser(username, password) {
   // localforage.dropInstance().then(function() {
   //   console.log('Dropped the store of the current instance');
   // });
-  let user = { username: username, password: password, createdAt: Date.now(), logedIn: false };
+  let user = { username: username, password: password, createdAt: Date.now(), logedIn: false, notifications: []};
   let users = await getUsers();
   users.unshift(user);
   await set("users", users);
@@ -73,9 +73,20 @@ export async function getContact(id) {
 }
 
 export async function getUser(username) {
-  console.log(users);
   let user = users.find(user => user.username === username);
   return user ?? null;
+}
+
+export async function getCurrentUser() {
+  let users = await localforage.getItem("users");
+  let user = users.find(user => user.logedIn === true);
+  return user ?? null;
+}
+
+export async function getLoggedOutUsers() {
+  let users = await localforage.getItem("users");
+  let loggedOutUsers = users.filter(user => user.logedIn === false);
+  return loggedOutUsers ?? null;
 }
 
 export async function login(username, password) {
@@ -90,12 +101,31 @@ export async function login(username, password) {
   return false;
 }
 
+export async function logout() {
+  let users = await localforage.getItem("users");
+  let currentUser = users.find(user => user.logedIn === true);
+  Object.assign(currentUser, { logedIn: false, notifications: []});
+  await set("users", users);
+  return true;
+}
+
 export async function updateGroup(id, updates) {
   let groups = await localforage.getItem("groups");
   let group = groups.find(group => group.id === id);
   if (!group) throw new Error("No group found for", id);
   Object.assign(group, updates);
   await set("groups", groups);
+  // notify logged out users
+  let currentUser = await getCurrentUser();
+  let users = await localforage.getItem("users");
+  let loggedOutUsers = users.filter(user => user.logedIn === false);
+  let notification = "Entity " + group.name + " has been updated" + " by " + currentUser.username
+  for (let i = 0; i < loggedOutUsers.length; i++) {
+    console.log(loggedOutUsers[i]);
+    // loggedOutUsers[i].notifications = [notification];
+    loggedOutUsers[i].notifications.push(notification)
+    await set("users", users);
+  }
   return group;
 }
 
@@ -105,6 +135,17 @@ export async function updateContact(id, updates) {
   if (!contact) throw new Error("No contact found for", id);
   Object.assign(contact, updates);
   await set("contacts", contacts);
+  // notify logged out users
+  let currentUser = await getCurrentUser();
+  let users = await localforage.getItem("users");
+  let loggedOutUsers = users.filter(user => user.logedIn === false);
+  let notification = "Finding " + contact.title + " has been updated" + " by " + currentUser.username
+  for (let i = 0; i < loggedOutUsers.length; i++) {
+    console.log(loggedOutUsers[i]);
+    // loggedOutUsers[i].notifications = [notification];
+    loggedOutUsers[i].notifications.push(notification)
+    await set("users", users);
+  }
   return contact;
 }
 
