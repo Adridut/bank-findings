@@ -17,7 +17,7 @@ export default function Contact() {
         {contact.finding && <p className="finding-text">{contact.finding}</p>}
         {contact.measure && <h2>Measures:</h2>}
         {contact.measure && <p className="finding-text">{contact.measure}</p>}
-        <div>
+        <div className="edit-button-container">
           <Form action="edit">
             <button type="submit" className="edit-group-button">Edit</button>
           </Form>

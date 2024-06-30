@@ -5,10 +5,6 @@ import { getContacts, createContact, createGroup, getGroups, deleteGroup, delete
 import { FaTrash, FaPlusCircle, FaEdit, FaRegCircle   } from "react-icons/fa";
 import { IoIosArrowForward, IoIosArrowDown } from "react-icons/io";
 
-
-
-
-
 export async function action({request, params}) {
   const formData = await request.formData();
   const formId = formData.get("form-id");
@@ -26,6 +22,9 @@ export async function action({request, params}) {
       await deleteContact(contacts[i].id);
     }
     return redirect("/portal");
+  } else if (formId === "log-out") {
+    localStorage.setItem("token", false);
+    return redirect("/");
   }
   else {
     // const contact = await createContact(formId);
@@ -139,7 +138,9 @@ export default function Root() {
               <div className="no-findings">No bank registered</div>
           )}
         </nav>
-        <Link className="link-logout-button" to="/">Logout</Link>
+        <Form method="post">
+          <button type="submit" className="link-logout-button" name="form-id" value="log-out">Logout</button>
+        </Form>
       </div>
       <div id="detail" className={navigation.state === "loading" ? "loading" : ""}>
         <Outlet />

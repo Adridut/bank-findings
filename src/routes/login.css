@@ -6,9 +6,6 @@
 
 .login-header {
     text-align: center;
-    margin-bottom: 20px;
-    height: 35%;
-    align-content: center;
 }
 
 .login-form {
@@ -57,5 +54,4 @@
     width: 200px;
     height: 200px;
     margin-left: 20px;
-    position: absolute;
 }

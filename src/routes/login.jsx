@@ -1,52 +1,53 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Form, redirect } from "react-router-dom";
 import "./login.css" 
 import ecb_logo from '../images/ecb.jpg';
+import { login} from '../contacts';
+
+
+
+export async function action({ request, params }) {
+    // await createUser("John", "123")
+    // await createUser("Alice", "123")
+    // await createUser("Bob", "123")
+    const formData = await request.formData();
+    const credentials = Object.fromEntries(formData);
+    const success = await login(credentials.username, credentials.password);
+    if (success) {
+        localStorage.setItem("token", true);
+        return redirect("/portal");
+    } else {
+        return false;
+    }
+}
 
 
 const Login = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-
-    const handleUsernameChange = (e) => {
-        setUsername(e.target.value);
-    };
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Perform login logic here
-    };
 
     return (
         <div className='login-container'>
             <img src={ecb_logo} className='ecb-logo'/>
-            <h1 className='login-header'>Bank Findings and Measures Library</h1>
-            <form onSubmit={handleSubmit} className='login-form'>
+            <h1 className='login-header'>ECB Findings Library</h1>
+            <Form method="post" className='login-form'>
                 <h2>Sign In</h2>
                 <input
                     type="text"
                     id="username"
-                    value={username}
-                    onChange={handleUsernameChange}
                     placeholder='Username'
                     className="login-input"
                     required={true}
+                    name='username'
                 />
                 <input
                     className="login-input"
                     type="password"
                     id="password"
-                    value={password}
-                    onChange={handlePasswordChange}
                     placeholder='Password'
                     required={true}
+                    name='password'
                 />
-                <Link className="link-button" to="/portal">Login</Link>
-            </form>
+                <button type="submit" className="link-button">Login</button>
+            </Form>
         </div>
     );
 };

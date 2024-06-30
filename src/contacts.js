@@ -3,6 +3,9 @@ import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 
 
+// Usernames: John, Alice, Bob
+// Passwords: 123
+
 
 export async function getGroups(query){
   let groups = await localforage.getItem("groups");
@@ -22,10 +25,13 @@ export async function getContacts(query) {
   return contacts.sort(sortBy("title", "createdAt"));
 }
 
+export async function getUsers() {
+  let users = await localforage.getItem("users");
+  if (!users) users = [];
+  return users;
+}
+
 export async function createGroup() {
-  // localforage.dropInstance().then(function() {
-  // console.log('Dropped the store of the current instance');
-  // });
   let id = Math.random().toString(36).substring(2, 9);
   let group = { id, createdAt: Date.now() };
   let groups = await getGroups();
@@ -43,6 +49,17 @@ export async function createContact(groupId) {
   return contact;
 }
 
+export async function createUser(username, password) {
+  // localforage.dropInstance().then(function() {
+  //   console.log('Dropped the store of the current instance');
+  // });
+  let user = { username: username, password: password, createdAt: Date.now(), logedIn: false };
+  let users = await getUsers();
+  users.unshift(user);
+  await set("users", users);
+  return user;
+}
+
 export async function getGroup(id) {
   let groups = await localforage.getItem("groups");
   let group = groups.find(group => group.id === id);
@@ -53,6 +70,24 @@ export async function getContact(id) {
   let contacts = await localforage.getItem("contacts");
   let contact = contacts.find(contact => contact.id === id);
   return contact ?? null;
+}
+
+export async function getUser(username) {
+  console.log(users);
+  let user = users.find(user => user.username === username);
+  return user ?? null;
+}
+
+export async function login(username, password) {
+  let users = await localforage.getItem("users");
+  let user = users.find(user => user.username === username);
+  if (!user) return false;
+  if (user.password === password) {
+    Object.assign(user, { logedIn: true });
+    await set("users", users);
+    return true;
+  }
+  return false;
 }
 
 export async function updateGroup(id, updates) {

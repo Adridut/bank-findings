@@ -2,12 +2,17 @@
     height: 100%;   
 }
 
+.edit-button-container {
+    display: flex;
+}
+
 .edit-group-title-input {
     width: 100%;
 }
 
 .bank-title-input {
     width: 50%;
+    margin-bottom: 3px;
 }
 
 .edit-group-input {
@@ -17,6 +22,7 @@
 
 .finding-text {
     white-space: pre-line;
+    margin-top: 3px;
 }
 
 .edit-group-button-container {
@@ -46,8 +52,6 @@
 .delete-group-button {
     background-color: var(--negative-color);
 }
-
-
 
 .finding-title {
     word-wrap: break-word;

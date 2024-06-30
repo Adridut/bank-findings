@@ -40,7 +40,6 @@ export default function EditContact() {
                 name="measure"
                 className="edit-group-input"
                 defaultValue={contact?.measure}
-                wrap="hard"
             />
             <div>
                 <button type="submit" className="edit-group-button edit-group-button">Save</button>

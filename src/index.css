@@ -95,7 +95,7 @@ button:active {
   transform: translateY(1px);
 }
 
-#contact h1 {
+/* #contact h1 {
   display: flex;
   align-items: flex-start;
   gap: 1rem;
@@ -117,7 +117,7 @@ button:active {
 #contact h1 form button[value="true"]:hover,
 #contact h1 form button[value="false"] {
   color: #eeb004;
-}
+} */
 
 
 .sr-only {
@@ -282,7 +282,7 @@ i {
   transition-delay: 200ms;
 }
 
-#contact {
+/* #contact {
   max-width: 40rem;
   display: flex;
 }
@@ -379,7 +379,7 @@ i {
   display: flex;
   gap: 0.5rem;
   margin: 0 0 0 8rem;
-}
+} */
 
 
 #zero-state {
