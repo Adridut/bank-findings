@@ -90,7 +90,7 @@ export default function Root() {
             <ul>
               {groups.map((group) => (
                 <li key={group.id}>
-                  <div className="group">
+                  <div className="group parent">
                     <div className="group-name-container" onClick={setVisibility(group.id)}>
                       {visible === group.id ? <IoIosArrowDown className="collapse-arrow" size={20}/> : <IoIosArrowForward className="collapse-arrow" size={20}/>}
                       <div className="group-name">
@@ -98,13 +98,13 @@ export default function Root() {
                       </div>
                     </div>
                     <Form method="post">
-                      <button type="submit" name="form-id" value={"edit-group-"+group.id} className="group-button edit-icon"><FaEdit size={18}/></button>
+                      <button type="submit" name="form-id" value={"edit-group-"+group.id} className="group-button edit-icon child"><FaEdit size={18}/></button>
                     </Form>
                     <Form method="post">
-                      <button type="submit" name="form-id" value={group.id} className="group-button add-icon"><FaPlusCircle  size={18}/></button>
+                      <button type="submit" name="form-id" value={group.id} className="group-button add-icon child"><FaPlusCircle  size={18}/></button>
                     </Form>
                     <Form method="post">
-                      <button type="submit" name="form-id" value={"delete-group-"+group.id} className="group-button trash-icon"><FaTrash size={18}/></button>
+                      <button type="submit" name="form-id" value={"delete-group-"+group.id} className="group-button trash-icon child"><FaTrash size={18}/></button>
                     </Form>
                   </div>
                   {visible === group.id ? (

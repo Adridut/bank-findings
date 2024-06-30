@@ -54,6 +54,10 @@
     width: 10%;
 }
 
+.parent:not(:hover) .child {
+    visibility: hidden;
+  }
+
 .group-button:hover {
     box-shadow: none;
 }
